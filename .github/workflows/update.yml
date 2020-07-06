@@ -5,9 +5,6 @@ on:
       - master
   schedule:
     - cron: "0 */6 * * *"
-defaults:
-  run:
-    working-directory: /tmp
 env:
   SOURCE_NAME: gerbv
   SOURCE_DIR: ${{ github.workspace }}/submodules/gerbv
@@ -24,7 +21,7 @@ jobs:
           submodules: recursive
 
       - if: env.GITHUB_ACTOR != 'nektos/act'
-        run: ci/setup
+        run: ${{ github.workspace }}/ci/setup
 
       - uses: actions/setup-node@v1.4.2
         with:
