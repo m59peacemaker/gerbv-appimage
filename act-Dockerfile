@@ -1,5 +1,7 @@
 FROM balenalib/intel-nuc-ubuntu-node:14-xenial-build
 
+RUN apt update && apt install -y sudo
+
 COPY ./ci/setup /tmp/setup
 
 RUN /tmp/setup && rm /tmp/setup

@@ -10,11 +10,11 @@ ldqt () {
 	/tmp/ldqt.AppImage --appimage-extract-and-run $@
 }
 
-apt update
+sudo apt update
 
-apt install -y curl
+sudo apt install -y curl
 
-apt install -y \
+sudo apt install -y \
 	libcairo-dev \
 	build-essential \
 	gnulib \
