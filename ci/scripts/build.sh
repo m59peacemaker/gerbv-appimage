@@ -29,10 +29,11 @@ make
 
 make install DESTDIR=$PWD/AppDir
 
+export VERSION="${BUILD_TAG_SOURCE}"
 ldqt AppDir/usr/local/share/applications/*.desktop -bundle-non-qt-libs
 ldqt AppDir/usr/local/share/applications/*.desktop -appimage
 
-AppImage_name="`echo gerbv-*.AppImage`"
+AppImage_name="`echo Gerbv-*.AppImage`"
 AppImage_path="${PWD}/${AppImage_name}"
 
 echo "::set-output name=AppImage_name::${AppImage_name}"

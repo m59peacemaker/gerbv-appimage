@@ -12,7 +12,8 @@ jobs:
   update:
     runs-on: "ubuntu-16.04"
     steps:
-      - if: env.GITHUB_ACTOR != 'nektos/act'
+      - name: production: checkout project
+        if: env.GITHUB_ACTOR != 'nektos/act'
         uses: actions/checkout@v2
         with:
           repository: ${{ github.repository }}
@@ -20,14 +21,13 @@ jobs:
           fetch-depth: 0
           submodules: recursive
 
-      - if: env.GITHUB_ACTOR != 'nektos/act'
+      - name: production: setup
+        if: env.GITHUB_ACTOR != 'nektos/act'
         run: ${{ github.workspace }}/ci/setup
 
       - uses: actions/setup-node@v1.4.2
         with:
           node-version: 14
-
-      - run: git --version
 
       - id: set_build_tag
         run: (cd "${GITHUB_WORKSPACE}/ci" && npm install && ./scripts/set_build_tag.js)
@@ -40,7 +40,8 @@ jobs:
           BUILD_TAG: ${{ steps.set_build_tag.outputs.build_tag }}
         run: cd "${SOURCE_DIR}" && ${{ github.workspace }}/ci/scripts/build.sh
 
-      - if: env.GITHUB_ACTOR == 'nektos/act'
+      - name: dev: sucess - early termination
+        if: env.GITHUB_ACTOR == 'nektos/act'
         run: echo "AppImage_path=${{ steps.build.outputs.AppImage_path }}"; echo "Success! Exiting with failure code for early termination in development..."; exit 1;
 
       - id: create_release
