@@ -46,6 +46,21 @@ jobs:
         if: env.GITHUB_ACTOR == 'nektos/act'
         run: echo "AppImage_path=${{ steps.build.outputs.AppImage_path }}"; echo "Success! Exiting with failure code for early termination in development..."; exit 1;
 
+      - name: "update AppImage_url"
+        env:
+          BUILD_TAG_SOURCE: ${{ steps.set_build_tag.outputs.build_source_tag }}
+          BUILD_TAG: ${{ steps.set_build_tag.outputs.build_tag }}
+        run: echo "https://github.com/m59peacemaker/gerbv-appimage/releases/download/${BUILD_TAG}/Gerbv_Gerber_File_Viewer-${BUILD_TAG_SOURCE}-x86_64.AppImage" > AppImage_url
+
+      - name: "update node package"
+        run: npm version "${{ steps.set_build_tag.outputs.build_tag }}"
+
+      - name: "commit"
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+        commit_message: ${{ steps.set_build_tag.outputs.build_tag }}
+        file_pattern: package.json AppImage_url
+
       - name: "create release"
         id: create_release
         if: steps.build.outputs.AppImage_path
@@ -57,7 +72,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "upload release AppImage"
-        id: upload-appimage
+        id: upload_appimage
         if: steps.create_release.outputs.upload_url && steps.build.outputs.AppImage_path
         uses: actions/upload-release-asset@v1
         with:

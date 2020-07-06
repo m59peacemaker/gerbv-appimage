@@ -1,0 +1,15 @@
+/node_modules/*
+!/node_modules/.keep
+*/node_modules/@*
+/build
+/vendor
+/temp
+/tmp
+/plugins
+/platforms
+*.log
+*.tmp
+.tmp*
+.reify-cache
+secrets
+.eslintcache

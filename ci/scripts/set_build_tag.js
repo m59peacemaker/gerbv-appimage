@@ -27,10 +27,13 @@ const gitTags = (dir, { sort } = {}) =>
 			return { tag, semver: semverResult ? semverResult.version : null }
 		})
 		.filter(({ semver }) => !!semver)
-	const tags = gitTags(WORKSPACE)
 	const latestSourceTag = sourceTags.slice(-1)[0]
-	if (!tags.includes(latestSourceTag.semver)) {
+	const tags = gitTags(WORKSPACE)
+	const tagsWithoutBuild = tags.map(tag => tag.split('+')[0])
+	if (!tagsWithoutBuild.includes(latestSourceTag.semver)) {
+		const buildId = Date.now()
+		const buildTag = [ latestSourceTag.semver, buildId ].join('+')
 		console.log(`::set-output name=build_source_tag::${latestSourceTag.tag}`)
-		console.log(`::set-output name=build_tag::${latestSourceTag.semver}`)
+		console.log(`::set-output name=build_tag::${buildTag}`)
 	}
 })()

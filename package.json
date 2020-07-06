@@ -1,0 +1,31 @@
+{
+  "name": "gerbv-bin",
+  "version": "1.0.0",
+  "description": "gerbv binary compatible with most Linux systems.",
+  "type": "module",
+  "main": "node/index.cjs",
+  "exports": {
+    "import": "./node/index.js",
+    "require": "./node/index.cjs"
+  },
+  "files": [
+    "AppImage_url",
+    "node/"
+  ],
+  "bin": "./.tmp/gerbv/squashfs-root/AppRun",
+  "scripts": {
+    "postinstall": "./node/postinstall.cjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m59peacemaker/gerbv-appimage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m59peacemaker/gerbv-appimage/issues"
+  },
+  "homepage": "https://github.com/m59peacemaker/gerbv-appimage#readme"
+}
