@@ -12,7 +12,7 @@ jobs:
   update:
     runs-on: "ubuntu-16.04"
     steps:
-      - name: production: checkout project
+      - name: "production: checkout project"
         if: env.GITHUB_ACTOR != 'nektos/act'
         uses: actions/checkout@v2
         with:
@@ -21,7 +21,7 @@ jobs:
           fetch-depth: 0
           submodules: recursive
 
-      - name: production: setup
+      - name: "production: setup"
         if: env.GITHUB_ACTOR != 'nektos/act'
         run: ${{ github.workspace }}/ci/setup
 
@@ -40,7 +40,7 @@ jobs:
           BUILD_TAG: ${{ steps.set_build_tag.outputs.build_tag }}
         run: cd "${SOURCE_DIR}" && ${{ github.workspace }}/ci/scripts/build.sh
 
-      - name: dev: sucess - early termination
+      - name: "dev: success - early termination"
         if: env.GITHUB_ACTOR == 'nektos/act'
         run: echo "AppImage_path=${{ steps.build.outputs.AppImage_path }}"; echo "Success! Exiting with failure code for early termination in development..."; exit 1;
 
