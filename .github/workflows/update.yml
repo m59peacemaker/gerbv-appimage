@@ -58,8 +58,8 @@ jobs:
       - name: "commit"
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-        commit_message: ${{ steps.set_build_tag.outputs.build_tag }}
-        file_pattern: package.json AppImage_url
+          commit_message: ${{ steps.set_build_tag.outputs.build_tag }}
+          file_pattern: package.json AppImage_url
 
       - name: "create release"
         id: create_release
