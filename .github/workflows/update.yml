@@ -34,6 +34,8 @@ jobs:
 
       - name: "set build tag"
         id: set_build_tag
+        env:
+          BUILD_REQUIRED: ${{ github.event_name == 'push' }}
         run: (cd "${GITHUB_WORKSPACE}/ci" && npm install && ./scripts/set_build_tag.js)
 
       - name: "build"

@@ -4,7 +4,7 @@ const { execFileSync: exec } = require('child_process')
 const { EOL } = require('os')
 const semver = require('semver')
 
-const { WORKSPACE, SOURCE_DIR } = process.env
+const { WORKSPACE, SOURCE_DIR, BUILD_REQUIRED } = process.env
 
 const gitTags = (dir, { sort } = {}) => 
 	exec(
@@ -28,11 +28,16 @@ const gitTags = (dir, { sort } = {}) =>
 		})
 		.filter(({ semver }) => !!semver)
 	const latestSourceTag = sourceTags.slice(-1)[0]
-	const tags = gitTags(WORKSPACE)
-	const tagsWithoutBuild = tags.map(tag => tag.split('+')[0])
-	if (!tagsWithoutBuild.includes(latestSourceTag.semver)) {
-		const buildId = Date.now()
-		const buildTag = [ latestSourceTag.semver, buildId ].join('+')
+	const tags = gitTags(WORKSPACE).map(tag => {
+		const [ main, build ] = tag.split('-')
+		return { tag, main, build: Number(build) }
+	})
+	const matchingTags = tags.filter(({ main }) => main === latestSourceTag.semver)
+	if (BUILD_REQUIRED === 'true' || !matchingTags.length) {
+		const buildId = matchingTags.length
+			? matchingTags.map(({ build }) => build).sort((a, b) => b - 1)[0]
+			: 1
+		const buildTag = [ latestSourceTag.semver, buildId ].join('-')
 		console.log(`::set-output name=build_source_tag::${latestSourceTag.tag}`)
 		console.log(`::set-output name=build_tag::${buildTag}`)
 	}
