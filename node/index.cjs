@@ -1,1 +1,1 @@
-module.exports = `${__dirname}/../.tmp/gerbv/squashfs-root/AppRun`
+module.exports = `${__dirname}/bin/gerbv/squashfs-root/AppRun`
