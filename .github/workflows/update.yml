@@ -44,7 +44,7 @@ jobs:
           BUILD_TAG: ${{ steps.set_build_tag.outputs.build_tag }}
         run: cd "${SOURCE_DIR}" && ${{ github.workspace }}/ci/scripts/build.sh
 
-      - if: env.GITHUB_ACTOR = 'nektos/act'
+      - if: env.GITHUB_ACTOR == 'nektos/act'
         run: echo "AppImage_path=${{ steps.build.outputs.AppImage_path }}"; echo "Success! Exiting with failure code for early termination in development..."; exit 1;
 
       - id: create_release
