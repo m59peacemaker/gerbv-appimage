@@ -35,7 +35,7 @@ const gitTags = (dir, { sort } = {}) =>
 	const matchingTags = tags.filter(({ main }) => main === latestSourceTag.semver)
 	if (BUILD_REQUIRED === 'true' || !matchingTags.length) {
 		const buildId = matchingTags.length
-			? matchingTags.map(({ build }) => build).sort((a, b) => b - 1)[0]
+			? matchingTags.map(({ build }) => build).sort((a, b) => b - 1)[0] + 1
 			: 1
 		const buildTag = [ latestSourceTag.semver, buildId ].join('-')
 		console.log(`::set-output name=build_source_tag::${latestSourceTag.tag}`)
