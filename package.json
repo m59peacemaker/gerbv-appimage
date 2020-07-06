@@ -13,7 +13,7 @@
     "node/"
   ],
   "bin": {
-    "gerbv": "node/bin/gerbv"
+    "gerbv": "node/bin/gerbv/squashfs-root/AppRun"
   },
   "scripts": {
     "postinstall": "./node/postinstall.cjs",
@@ -31,6 +31,8 @@
   },
   "homepage": "https://github.com/m59peacemaker/gerbv-appimage#readme",
   "dependencies": {
-    "download": "^8.0.0"
+    "bin-links": "^2.1.2",
+    "download": "^8.0.0",
+    "read-package-json-fast": "^1.1.3"
   }
 }
