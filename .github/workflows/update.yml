@@ -9,7 +9,6 @@ defaults:
   run:
     working-directory: /tmp
 env:
-  WORKDIR: /tmp
   SOURCE_NAME: gerbv
   SOURCE_DIR: ${{ github.workspace }}/submodules/gerbv
 jobs:
@@ -17,15 +16,15 @@ jobs:
     runs-on: "ubuntu-16.04"
     steps:
       - if: env.GITHUB_ACTOR != 'nektos/act'
-        run: ci/setup
-
-      - if: env.GITHUB_ACTOR != 'nektos/act'
         uses: actions/checkout@v2
         with:
           repository: ${{ github.repository }}
           path: ${{ github.workspace }}
           fetch-depth: 0
           submodules: recursive
+
+      - if: env.GITHUB_ACTOR != 'nektos/act'
+        run: ci/setup
 
       - uses: actions/setup-node@v1.4.2
         with:
