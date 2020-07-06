@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+IMAGE_TAG=gerbv-appimage-act
+
+docker build -t "${IMAGE_TAG}" -f ./act-Dockerfile .
+
+act \
+	-b \
+	-P ubuntu-16.04="${IMAGE_TAG}"

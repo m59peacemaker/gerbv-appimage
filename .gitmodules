@@ -1,0 +1,6 @@
+[submodule "gerbv"]
+	path = submodules/gerbv
+	url = git://git.geda-project.org/gerbv.git
+[submodule "submodules/gerbv"]
+	path = submodules/gerbv
+	url = git://git.geda-project.org/gerbv.git
