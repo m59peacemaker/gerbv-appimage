@@ -12,7 +12,9 @@
     "AppImage_url",
     "node/"
   ],
-  "bin": "./.tmp/gerbv/squashfs-root/AppRun",
+  "bin": {
+    "gerbv": "./.tmp/gerbv/squashfs-root/AppRun"
+  },
   "scripts": {
     "postinstall": "./node/postinstall.cjs",
     "test": "echo \"Error: no test specified\" && exit 1"
