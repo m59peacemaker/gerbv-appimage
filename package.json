@@ -29,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/m59peacemaker/gerbv-appimage/issues"
   },
-  "homepage": "https://github.com/m59peacemaker/gerbv-appimage#readme"
+  "homepage": "https://github.com/m59peacemaker/gerbv-appimage#readme",
+  "dependencies": {
+    "download": "^8.0.0"
+  }
 }

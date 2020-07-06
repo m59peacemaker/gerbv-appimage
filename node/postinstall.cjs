@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
+const { execFileSync } = require('child_process')
 const fs = require('fs')
 const path = require('path')
 const download = require('download')
-const { execFileSync } = require('child_process')
 
-;(async (() => {
-	const url = await fs.promises.readFile(`${__dirname}/../AppImage_url`)
+;(async () => {
+	const url = (await fs.promises.readFile(`${__dirname}/../AppImage_url`)).replace('+', encodeUriComponent('+'))
 	const appimage = `${__dirname}/.tmp/gerbv/gerbv`
 
 	console.log(`Downloading ${url} to ${appimage}...`)
