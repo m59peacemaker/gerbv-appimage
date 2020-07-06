@@ -5,7 +5,7 @@
 ### install
 
 ```sh
-npm install m59peacemaker/gerbv-bin
+npm install m59peacemaker/gerbv-appimage
 ```
 
 ### usage
