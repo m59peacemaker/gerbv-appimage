@@ -1,6 +1,6 @@
 {
   "name": "gerbv-bin",
-  "version": "0.0.0",
+  "version": "2.7.0-1",
   "description": "gerbv binary compatible with most Linux systems.",
   "type": "module",
   "main": "node/index.cjs",
