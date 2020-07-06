@@ -13,7 +13,7 @@
     "node/"
   ],
   "bin": {
-    "gerbv": "./.tmp/gerbv/squashfs-root/AppRun"
+    "gerbv": "node/bin/gerbv"
   },
   "scripts": {
     "postinstall": "./node/postinstall.cjs",
