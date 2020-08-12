@@ -58,9 +58,11 @@ jobs:
         run: echo "https://github.com/m59peacemaker/gerbv-appimage/releases/download/${BUILD_TAG}/Gerbv_Gerber_File_Viewer-${BUILD_TAG_SOURCE}-x86_64.AppImage" > AppImage_url
 
       - name: "update node package"
+        if: steps.build.outputs.AppImage_path
         run: npm version --no-git-tag-version "${{ steps.set_build_tag.outputs.build_tag }}"
 
       - name: "commit"
+        if: steps.build.outputs.AppImage_path
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: ${{ steps.set_build_tag.outputs.build_tag }}
