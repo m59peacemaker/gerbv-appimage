@@ -1,5 +1,5 @@
 {
-  "name": "gerbv-bin",
+  "name": "@m59/gerbv-bin",
   "version": "2.7.0-2",
   "description": "gerbv binary compatible with most Linux systems.",
   "type": "module",
@@ -23,7 +23,12 @@
     "type": "git",
     "url": "git+https://github.com/m59peacemaker/gerbv-appimage.git"
   },
-  "keywords": [],
+  "keywords": [
+    "gerbv",
+    "gerber",
+    "gbr",
+    "cli"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
